@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Common Dimensions-->
+    <dimen name="dimen_1dp">@dimen/_1sdp</dimen>
+    <dimen name="dimen_2dp">@dimen/_2sdp</dimen>
+    <dimen name="dimen_3dp">@dimen/_3sdp</dimen>
+    <dimen name="dimen_4dp">@dimen/_4sdp</dimen>
+    <dimen name="dimen_5dp">@dimen/_5sdp</dimen>
+    <dimen name="dimen_6dp">@dimen/_6sdp</dimen>
+    <dimen name="dimen_8dp">@dimen/_8sdp</dimen>
+    <dimen name="dimen_10dp">@dimen/_10sdp</dimen>
+    <dimen name="dimen_12dp">@dimen/_12sdp</dimen>
+    <dimen name="dimen_15dp">@dimen/_15sdp</dimen>
+    <dimen name="dimen_16dp">@dimen/_16sdp</dimen>
+    <dimen name="dimen_20dp">@dimen/_20sdp</dimen>
+    <dimen name="dimen_25dp">@dimen/_25sdp</dimen>
+    <dimen name="dimen_30dp">@dimen/_30sdp</dimen>
+    <dimen name="dimen_35dp">@dimen/_35sdp</dimen>
+    <dimen name="dimen_40dp">@dimen/_40sdp</dimen>
+    <dimen name="dimen_42dp">@dimen/_42sdp</dimen>
+    <dimen name="dimen_45dp">@dimen/_45sdp</dimen>
+    <dimen name="dimen_50dp">@dimen/_50sdp</dimen>
+    <dimen name="dimen_55dp">@dimen/_55sdp</dimen>
+    <dimen name="dimen_60dp">@dimen/_60sdp</dimen>
+    <dimen name="dimen_65dp">@dimen/_65sdp</dimen>
+    <dimen name="dimen_70dp">@dimen/_70sdp</dimen>
+    <dimen name="dimen_75dp">@dimen/_75sdp</dimen>
+    <dimen name="dimen_100dp">@dimen/_100sdp</dimen>
+    <dimen name="dimen_120dp">@dimen/_120sdp</dimen>
+    <dimen name="dimen_140dp">@dimen/_140sdp</dimen>
+    <dimen name="dimen_150dp">@dimen/_150sdp</dimen>
+    <dimen name="dimen_170dp">@dimen/_170sdp</dimen>
+    <dimen name="dimen_180dp">@dimen/_180sdp</dimen>
+    <dimen name="dimen_200dp">@dimen/_200sdp</dimen>
+    <dimen name="dimen_250dp">@dimen/_250sdp</dimen>
+    <dimen name="dimen_300dp">@dimen/_300sdp</dimen>
+    <dimen name="dimen_350dp">@dimen/_350sdp</dimen>
+
+
+    <!--    Common fonts-->
+    <dimen name="font_7sp">@dimen/_7ssp</dimen>
+    <dimen name="font_8sp">@dimen/_8ssp</dimen>
+    <dimen name="font_10sp">@dimen/_10ssp</dimen>
+    <dimen name="font_11sp">@dimen/_11ssp</dimen>
+    <dimen name="font_12sp">@dimen/_12ssp</dimen>
+    <dimen name="font_14sp">@dimen/_14ssp</dimen>
+    <dimen name="font_15sp">@dimen/_15ssp</dimen>
+    <dimen name="font_18sp">@dimen/_18ssp</dimen>
+</resources>

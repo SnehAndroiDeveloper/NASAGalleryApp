@@ -5,14 +5,17 @@ import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.LayoutRes
+import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.e.nasagalleryapp.NasaGalleryApp
-import com.e.nasagalleryapp.R
 
 /**
  * Created by Sneha on 17-08-2022.
  */
 abstract class BaseFragment : Fragment(), View.OnClickListener {
+    @LayoutRes
     protected abstract fun defineLayoutResource(): Int
 
     protected abstract fun initializeComponent(view: View) //to initialize the fragment components
