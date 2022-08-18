@@ -15,8 +15,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvImage"
@@ -28,8 +29,8 @@
             android:clipChildren="false"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/dimen_5dp"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="2dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="5dp"
             card_view:cardPreventCornerOverlap="true"
             card_view:cardUseCompatPadding="true"
             card_view:layout_constraintBottom_toBottomOf="parent"
@@ -41,8 +42,10 @@
                 android:id="@+id/ivImage"
                 android:layout_width="@dimen/dimen_100dp"
                 android:layout_height="@dimen/dimen_100dp"
+                android:layout_margin="@dimen/dimen_10dp"
                 android:contentDescription="@string/image_description"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_no_photo"
                 app:galleryImage="@{galleryViewModel.imageListLiveData.get(position).url}" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

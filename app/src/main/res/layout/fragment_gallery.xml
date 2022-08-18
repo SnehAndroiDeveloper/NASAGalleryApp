@@ -13,13 +13,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
+
+        <LinearLayout
+            android:id="@+id/llToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100dp"
+            android:background="@color/colorToolbar"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGallery"
             adapter="@{galleryViewModel.imageAdapter}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:paddingStart="@dimen/dimen_5dp"
             android:paddingTop="@dimen/dimen_5dp"
             android:paddingEnd="@dimen/dimen_5dp"
@@ -30,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llToolbar"
             app:spanCount="@integer/grid_span_count"
             tools:listitem="@layout/row_image" />
 
