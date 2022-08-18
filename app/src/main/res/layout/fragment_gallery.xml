@@ -20,7 +20,7 @@
             android:id="@+id/llToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_100dp"
-            android:background="@color/colorToolbar"
+            android:background="@drawable/drawable_bg_toolbar"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
