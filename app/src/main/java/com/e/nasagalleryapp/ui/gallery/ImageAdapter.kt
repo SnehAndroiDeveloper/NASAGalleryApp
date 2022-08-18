@@ -3,6 +3,7 @@ package com.e.nasagalleryapp.ui.gallery
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.e.nasagalleryapp.R
 import com.e.nasagalleryapp.common.DataBoundListAdapter
 import com.e.nasagalleryapp.databinding.RowImageBinding
@@ -30,6 +31,14 @@ class ImageAdapter(
     override fun bind(binding: RowImageBinding, position: Int) {
         binding.position = position
         binding.galleryViewModel = galleryViewModel
+    }
+
+    fun dispatchToAdapter(arrImageList: ArrayList<ImageModel>) {
+        val diffCallback = GalleryDiffCallback(this.arrImageList, arrImageList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.arrImageList.clear()
+        this.arrImageList.addAll(arrImageList)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun updateItem(imageModel: ImageModel) {

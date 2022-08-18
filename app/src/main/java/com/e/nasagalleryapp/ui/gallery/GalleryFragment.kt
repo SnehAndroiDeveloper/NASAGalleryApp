@@ -5,9 +5,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.e.nasagalleryapp.R
 import com.e.nasagalleryapp.common.BaseFragment
-import com.e.nasagalleryapp.events.GalleryClickEventType
-import com.e.nasagalleryapp.events.GalleryDataState
-import com.e.nasagalleryapp.events.GalleryEvent
+import com.e.nasagalleryapp.communicators.GalleryClickEventType
+import com.e.nasagalleryapp.communicators.GalleryDataState
+import com.e.nasagalleryapp.communicators.GalleryEvent
+import com.e.nasagalleryapp.databinding.FragmentGalleryBinding
 import com.e.nasagalleryapp.extensions.toast
 import com.e.nasagalleryapp.viewmodels.GalleryViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,17 +17,17 @@ import kotlinx.coroutines.withContext
 /**
  * Created by Sneha on 17-08-2022.
  */
-class GalleryFragment : BaseFragment() {
+class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private val galleryViewModel: GalleryViewModel by viewModels()
 
     init {
         lifecycleScope.launchWhenCreated {
-            galleryViewModel.getEvent().collect { galleryDataResult ->
-                when (galleryDataResult.state) {
+            galleryViewModel.getEvent().collect { galleryResult ->
+                when (galleryResult.state) {
                     is GalleryDataState.PerformOperation -> {
-                        when (galleryDataResult.state.galleryEvent) {
+                        when (galleryResult.state.galleryEvent) {
                             is GalleryEvent.ClickEvent -> {
-                                when (galleryDataResult.state.galleryEvent.galleryClickEventType) {
+                                when (galleryResult.state.galleryEvent.galleryClickEventType) {
                                     GalleryClickEventType.ImageDetails -> {
 
                                     }
@@ -37,9 +38,15 @@ class GalleryFragment : BaseFragment() {
 
                             is GalleryEvent.DisplayToast -> {
                                 withContext(Dispatchers.Main) {
-                                    toast(galleryDataResult.state.galleryEvent.message)
+                                    toast(galleryResult.state.galleryEvent.message)
                                 }
                             }
+                        }
+                    }
+
+                    is GalleryDataState.OperationEnd -> {
+                        galleryResult.result?.let {
+                            galleryViewModel.imageAdapter.dispatchToAdapter(it)
                         }
                     }
 
@@ -54,6 +61,9 @@ class GalleryFragment : BaseFragment() {
     }
 
     override fun initializeComponent(view: View) {
+        dataBinding.galleryViewModel = galleryViewModel
+
+        galleryViewModel.fetchGalleryData()
     }
 
     override fun initToolbar() {

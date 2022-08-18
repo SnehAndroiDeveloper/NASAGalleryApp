@@ -1,10 +1,14 @@
 package com.e.nasagalleryapp.models
 
+import android.os.Parcelable
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Created by Sneha on 17-08-2022.
  */
+@Parcelize
 data class ImageModel(
     @SerializedName("copyright")
     var copyright: String? = null,
@@ -22,4 +26,8 @@ data class ImageModel(
     var title: String? = null,
     @SerializedName("url")
     var url: String? = null
-)
+) : Parcelable {
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+}

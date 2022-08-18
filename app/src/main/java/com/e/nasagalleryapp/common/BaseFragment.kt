@@ -5,16 +5,18 @@ import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.annotation.NonNull
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.e.nasagalleryapp.NasaGalleryApp
 
 /**
  * Created by Sneha on 17-08-2022.
  */
-abstract class BaseFragment : Fragment(), View.OnClickListener {
+abstract class BaseFragment<DataBinding : ViewDataBinding> : Fragment(), View.OnClickListener {
+    protected lateinit var dataBinding: DataBinding
+
     @LayoutRes
     protected abstract fun defineLayoutResource(): Int
 
@@ -29,12 +31,15 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(defineLayoutResource(), container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, defineLayoutResource(), container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        dataBinding.apply {
+            lifecycleOwner = this@BaseFragment
+        }
         initToolbar()
         initializeComponent(view)
     }

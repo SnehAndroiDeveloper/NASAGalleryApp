@@ -1,4 +1,4 @@
-package com.e.nasagalleryapp.events
+package com.e.nasagalleryapp.communicators
 
 /**
  * Created by Sneha on 17-08-2022.

@@ -5,4 +5,5 @@ package com.e.nasagalleryapp.common
  */
 object Constants {
     const val MAX_CLICK_INTERVAL: Long = 800
+    const val JSON_FILE_NAME: String = "data.json"
 }

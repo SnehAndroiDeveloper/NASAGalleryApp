@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="imageAdapter"
-            type="com.e.nasagalleryapp.ui.gallery.ImageAdapter" />
+            name="galleryViewModel"
+            type="com.e.nasagalleryapp.viewmodels.GalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +17,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGallery"
+            adapter="@{galleryViewModel.imageAdapter}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/dimen_5dp"
             android:paddingTop="@dimen/dimen_5dp"
             android:paddingEnd="@dimen/dimen_5dp"
             android:paddingBottom="@dimen/dimen_5dp"
-            app:adapter="@{imageAdapter}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
