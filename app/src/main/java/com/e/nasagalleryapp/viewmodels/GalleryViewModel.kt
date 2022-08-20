@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
+import com.e.nasagalleryapp.communicators.GalleryEvent
 import com.e.nasagalleryapp.models.ImageModel
 import com.e.nasagalleryapp.repositories.GalleryRepository
 import com.e.nasagalleryapp.results.GalleryResult
@@ -62,4 +64,23 @@ class GalleryViewModel(private val mApplication: Application) : AndroidViewModel
         imageAdapter.updateItem(imageModel)
     }
 
+    fun onImageListItemClick(position: Int) {
+        defaultScope.launch {
+            getImageListLiveData().value?.let { arrList ->
+                setEvent(
+                    GalleryResult(
+                        state = GalleryDataState.PerformOperation(
+                            GalleryEvent.ClickEvent(
+                                GalleryClickEventType.ImageDetails(
+                                    arrList,
+                                    position
+                                )
+                            )
+                        )
+                    )
+                )
+            }
+
+        }
+    }
 }

@@ -6,7 +6,6 @@ package com.e.nasagalleryapp.communicators
 sealed class GalleryEvent {
 
     data class ClickEvent(
-        var parcelableData: Any? = null,
         val galleryClickEventType: GalleryClickEventType
     ) : GalleryEvent()
 

@@ -1,15 +1,18 @@
 package com.e.nasagalleryapp.ui.gallery
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.e.nasagalleryapp.R
 import com.e.nasagalleryapp.common.BaseFragment
+import com.e.nasagalleryapp.common.Constants
 import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.communicators.GalleryEvent
 import com.e.nasagalleryapp.databinding.FragmentGalleryBinding
 import com.e.nasagalleryapp.extensions.toast
+import com.e.nasagalleryapp.ui.imageSlider.ImageSliderFragment
 import com.e.nasagalleryapp.viewmodels.GalleryViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,8 +31,8 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
                         when (galleryResult.state.galleryEvent) {
                             is GalleryEvent.ClickEvent -> {
                                 when (galleryResult.state.galleryEvent.galleryClickEventType) {
-                                    GalleryClickEventType.ImageDetails -> {
-
+                                    is GalleryClickEventType.ImageDetails -> {
+                                        openImageSliderFragment(galleryResult.state.galleryEvent.galleryClickEventType)
                                     }
 
                                     else -> {}
@@ -67,5 +70,15 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     }
 
     override fun initToolbar() {
+    }
+
+    private fun openImageSliderFragment(imageDetails: GalleryClickEventType.ImageDetails) {
+        val imageSliderFragment = ImageSliderFragment()
+        val bundle = bundleOf(
+            Constants.BUNDLE_CURRENT_POSITION to imageDetails.currentPosition,
+            Constants.BUNDLE_IMAGE_LIST to imageDetails.arrImageList
+        )
+        imageSliderFragment.arguments = bundle
+        addFragment(R.id.clContainer, this, imageSliderFragment, false)
     }
 }

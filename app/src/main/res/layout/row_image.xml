@@ -24,6 +24,7 @@
         android:clickable="true"
         android:clipChildren="false"
         android:foreground="?android:selectableItemBackground"
+        android:onClick="@{()->galleryViewModel.onImageListItemClick(position)}"
         card_view:cardCornerRadius="@dimen/dimen_5dp"
         card_view:cardElevation="5dp"
         card_view:cardPreventCornerOverlap="true"
