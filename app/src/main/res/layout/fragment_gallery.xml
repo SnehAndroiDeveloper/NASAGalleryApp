@@ -16,33 +16,30 @@
         android:layout_height="match_parent"
         android:background="@color/colorBackground">
 
-        <LinearLayout
-            android:id="@+id/llToolbar"
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_150dp"
+            android:layout_gravity="center"
             android:background="@drawable/drawable_bg_toolbar"
+            android:gravity="center"
             android:orientation="horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGallery"
             adapter="@{galleryViewModel.imageAdapter}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_120dp"
+            android:background="@drawable/drawable_bg_card"
+            android:elevation="3dp"
             android:paddingStart="@dimen/dimen_5dp"
             android:paddingTop="@dimen/dimen_5dp"
             android:paddingEnd="@dimen/dimen_5dp"
@@ -53,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llToolbar"
+            app:layout_constraintTop_toTopOf="parent"
             app:spanCount="@integer/grid_span_count"
             tools:listitem="@layout/row_image" />
 
