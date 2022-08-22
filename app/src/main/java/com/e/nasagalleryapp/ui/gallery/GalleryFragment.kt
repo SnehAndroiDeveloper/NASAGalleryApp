@@ -75,8 +75,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private fun openImageSliderFragment(imageDetails: GalleryClickEventType.ImageDetails) {
         val imageSliderFragment = ImageSliderFragment()
         val bundle = bundleOf(
-            Constants.BUNDLE_CURRENT_POSITION to imageDetails.currentPosition,
-            Constants.BUNDLE_IMAGE_LIST to imageDetails.arrImageList
+            Constants.BUNDLE_CURRENT_POSITION to imageDetails.currentPosition
         )
         imageSliderFragment.arguments = bundle
         addFragment(R.id.clContainer, this, imageSliderFragment, false)
