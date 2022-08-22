@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="imageSliderViewModel"
             type="com.e.nasagalleryapp.viewmodels.ImageSliderViewModel" />
@@ -70,20 +72,62 @@
             android:overScrollMode="never"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dimen_20dp">
 
+                <ImageView
+                    android:id="@+id/ivLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_left"
+                    android:onClick="@{()->imageSliderViewModel.onLeftIconClick(position)}"
+                    android:src="@drawable/ic_arrow_left"
+                    android:visibility="@{position == 0 ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_right"
+                    android:onClick="@{()->imageSliderViewModel.onRightIconClick(position)}"
+                    android:src="@drawable/ic_arrow_right"
+                    android:visibility="@{position == imageSliderViewModel.imageListLiveData.size() - 1 ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCurrentPosition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvCurrentPosition" />
+
                 <TextView
+                    android:id="@+id/tvCurrentPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_8sp"
+                    app:currentPosition="@{position}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivLeft"
+                    app:layout_constraintEnd_toStartOf="@id/ivRight"
+                    app:layout_constraintStart_toEndOf="@id/ivLeft"
+                    app:layout_constraintTop_toTopOf="@+id/ivLeft"
+                    app:totalSize="@{imageSliderViewModel.imageListLiveData.size()}" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20dp"
                     android:justificationMode="inter_word"
                     android:text="@{imageSliderViewModel.imageListLiveData.get(position).explanation}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_12sp" />
-            </LinearLayout>
+                    android:textSize="@dimen/font_12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCurrentPosition" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

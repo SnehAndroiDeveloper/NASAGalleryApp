@@ -11,4 +11,7 @@ sealed class GalleryClickEventType {
     object NoInternet : GalleryClickEventType()
     data class ImageDetails(val arrImageList: ArrayList<ImageModel>, val currentPosition: Int) :
         GalleryClickEventType()
+
+    data class PreviousImageDetails(val position: Int) : GalleryClickEventType()
+    data class NextImageDetails(val position: Int) : GalleryClickEventType()
 }

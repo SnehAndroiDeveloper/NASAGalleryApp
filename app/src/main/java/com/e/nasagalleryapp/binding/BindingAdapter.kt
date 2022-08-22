@@ -1,6 +1,7 @@
 package com.e.nasagalleryapp.binding
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.e.nasagalleryapp.R
@@ -15,4 +16,9 @@ fun setImageViewResource(imageView: ImageView, resource: String?) {
         .fallback(R.drawable.ic_no_photo)
         .error(R.drawable.ic_no_photo)
         .into(imageView)
+}
+
+@BindingAdapter("totalSize", "currentPosition")
+fun itemText(textView: TextView, totalSize: Int, currentPosition: Int) {
+    textView.text = "${currentPosition + 1} of $totalSize"
 }

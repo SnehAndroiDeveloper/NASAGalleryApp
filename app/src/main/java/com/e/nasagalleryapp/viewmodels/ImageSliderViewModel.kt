@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
+import com.e.nasagalleryapp.communicators.GalleryEvent
 import com.e.nasagalleryapp.models.ImageModel
 import com.e.nasagalleryapp.repositories.GalleryRepository
 import com.e.nasagalleryapp.results.GalleryResult
@@ -64,4 +66,31 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
         }
     }
 
+    fun onLeftIconClick(position: Int) {
+        defaultScope.launch {
+            setEvent(
+                GalleryResult(
+                    state = GalleryDataState.PerformOperation(
+                        GalleryEvent.ClickEvent(
+                            GalleryClickEventType.PreviousImageDetails(position - 1)
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    fun onRightIconClick(position: Int) {
+        defaultScope.launch {
+            setEvent(
+                GalleryResult(
+                    state = GalleryDataState.PerformOperation(
+                        GalleryEvent.ClickEvent(
+                            GalleryClickEventType.PreviousImageDetails(position + 1)
+                        )
+                    )
+                )
+            )
+        }
+    }
 }

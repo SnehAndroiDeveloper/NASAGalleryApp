@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">NASA Gallery App</string>
     <string name="image_description">Image</string>
+    <string name="image_left">Image left</string>
+    <string name="image_right">Image right</string>
 </resources>
