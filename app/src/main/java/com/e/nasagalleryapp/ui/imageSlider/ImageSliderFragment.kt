@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.e.nasagalleryapp.R
 import com.e.nasagalleryapp.common.BaseFragment
 import com.e.nasagalleryapp.common.Constants
+import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.databinding.FragmentImageSliderBinding
 import com.e.nasagalleryapp.viewmodels.ImageSliderViewModel
 
@@ -19,6 +20,21 @@ class ImageSliderFragment : BaseFragment<FragmentImageSliderBinding>() {
         lifecycleScope.launchWhenCreated {
             arguments?.let {
                 imageSliderViewModel.setCurrentPosition(it.getInt(Constants.BUNDLE_CURRENT_POSITION))
+            }
+            imageSliderViewModel.getEvent().collect { galleryResult ->
+                when (galleryResult.state) {
+                    GalleryDataState.OperationEnd -> {
+                        galleryResult.result?.let {
+                            imageSliderViewModel.imageSliderAdapter.dispatchToAdapter(it)
+                            dataBinding.vpImageSlider.currentItem =
+                                imageSliderViewModel.getCurrentPosition()
+                        }
+                    }
+
+                    else -> {
+
+                    }
+                }
             }
         }
     }

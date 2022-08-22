@@ -9,6 +9,7 @@ import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.models.ImageModel
 import com.e.nasagalleryapp.repositories.GalleryRepository
 import com.e.nasagalleryapp.results.GalleryResult
+import com.e.nasagalleryapp.ui.imageSlider.ImageSliderAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -35,6 +36,8 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
 
     fun getEvent() = event.asSharedFlow()
 
+    val imageSliderAdapter: ImageSliderAdapter = ImageSliderAdapter(ArrayList(), this)
+
     fun getImageListLiveData(): LiveData<ArrayList<ImageModel>?> = imageResultLiveData
 
     fun getCurrentPosition() = position
@@ -50,6 +53,8 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
                     GalleryDataState.OperationEnd -> {
                         galleryResult.result?.let {
                             imageResultLiveData.postValue(it)
+
+                            setEvent(galleryResult)
                         }
                     }
 
