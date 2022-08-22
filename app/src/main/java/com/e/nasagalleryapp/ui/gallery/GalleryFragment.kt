@@ -57,6 +57,10 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
                 }
             }
         }
+
+        lifecycleScope.launchWhenResumed {
+            galleryViewModel.checkInternetConnection()
+        }
     }
 
     override fun defineLayoutResource(): Int {

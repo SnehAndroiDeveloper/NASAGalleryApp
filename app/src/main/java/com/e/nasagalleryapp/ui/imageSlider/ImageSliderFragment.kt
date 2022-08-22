@@ -11,7 +11,10 @@ import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.communicators.GalleryEvent
 import com.e.nasagalleryapp.databinding.FragmentImageSliderBinding
+import com.e.nasagalleryapp.extensions.toast
 import com.e.nasagalleryapp.viewmodels.ImageSliderViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Created by Sneha on 20-08-2022.
@@ -52,8 +55,10 @@ class ImageSliderFragment : BaseFragment<FragmentImageSliderBinding>() {
                                 }
                             }
 
-                            else -> {
-
+                            is GalleryEvent.DisplayToast -> {
+                                withContext(Dispatchers.Main) {
+                                    toast(galleryResult.state.galleryEvent.message)
+                                }
                             }
                         }
                     }
@@ -63,6 +68,10 @@ class ImageSliderFragment : BaseFragment<FragmentImageSliderBinding>() {
                     }
                 }
             }
+        }
+
+        lifecycleScope.launchWhenResumed {
+            imageSliderViewModel.checkInternetConnection()
         }
     }
 

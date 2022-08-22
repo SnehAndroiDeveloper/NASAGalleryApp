@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.e.nasagalleryapp.R
+import com.e.nasagalleryapp.common.NetworkUtils
 import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.communicators.GalleryEvent
@@ -75,6 +77,22 @@ class GalleryViewModel(private val mApplication: Application) : AndroidViewModel
                                     arrList,
                                     position
                                 )
+                            )
+                        )
+                    )
+                )
+            }
+        }
+    }
+
+    fun checkInternetConnection() {
+        defaultScope.launch {
+            if (!NetworkUtils.isInternetAvailable(mApplication)) {
+                setEvent(
+                    GalleryResult(
+                        state = GalleryDataState.PerformOperation(
+                            galleryEvent = GalleryEvent.DisplayToast(
+                                mApplication.getString(R.string.network_not_available)
                             )
                         )
                     )

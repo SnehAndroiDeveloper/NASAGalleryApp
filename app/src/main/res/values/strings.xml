@@ -3,4 +3,5 @@
     <string name="image_description">Image</string>
     <string name="image_left">Image left</string>
     <string name="image_right">Image right</string>
+    <string name="network_not_available">Unable to show the details properly. Please check your internet connection.</string>
 </resources>

@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.e.nasagalleryapp.R
+import com.e.nasagalleryapp.common.NetworkUtils
 import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.communicators.GalleryEvent
@@ -68,6 +70,7 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
 
     fun onLeftIconClick(position: Int) {
         defaultScope.launch {
+            checkInternetConnection()
             setEvent(
                 GalleryResult(
                     state = GalleryDataState.PerformOperation(
@@ -82,6 +85,7 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
 
     fun onRightIconClick(position: Int) {
         defaultScope.launch {
+            checkInternetConnection()
             setEvent(
                 GalleryResult(
                     state = GalleryDataState.PerformOperation(
@@ -91,6 +95,22 @@ class ImageSliderViewModel(private val mApplication: Application) : AndroidViewM
                     )
                 )
             )
+        }
+    }
+
+    fun checkInternetConnection() {
+        defaultScope.launch {
+            if (!NetworkUtils.isInternetAvailable(mApplication)) {
+                setEvent(
+                    GalleryResult(
+                        state = GalleryDataState.PerformOperation(
+                            galleryEvent = GalleryEvent.DisplayToast(
+                                mApplication.getString(R.string.network_not_available)
+                            )
+                        )
+                    )
+                )
+            }
         }
     }
 }
