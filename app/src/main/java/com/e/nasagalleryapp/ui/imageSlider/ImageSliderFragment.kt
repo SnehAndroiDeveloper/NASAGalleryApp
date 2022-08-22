@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.e.nasagalleryapp.R
 import com.e.nasagalleryapp.common.BaseFragment
 import com.e.nasagalleryapp.common.Constants
+import com.e.nasagalleryapp.common.ZoomOutPageTransformer
 import com.e.nasagalleryapp.communicators.GalleryClickEventType
 import com.e.nasagalleryapp.communicators.GalleryDataState
 import com.e.nasagalleryapp.communicators.GalleryEvent
@@ -72,6 +73,8 @@ class ImageSliderFragment : BaseFragment<FragmentImageSliderBinding>() {
     override fun initializeComponent(view: View) {
         dataBinding.position = imageSliderViewModel.getCurrentPosition()
         dataBinding.imageSliderViewModel = imageSliderViewModel
+
+        dataBinding.vpImageSlider.setPageTransformer(true, ZoomOutPageTransformer())
     }
 
     override fun initToolbar() {
